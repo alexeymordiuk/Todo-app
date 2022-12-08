@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { toggleSuccess } from "../store/todoSlice/todoSlice";
 import { AiOutlineCheck } from "react-icons/ai";
 import { todoItems } from "../types/todoTypes";
+import { Check } from "../style-components/Check";
 
 type propsChek = {
   todo: todoItems;
@@ -17,14 +18,12 @@ const Chek: React.FC<propsChek> = ({ todo }) => {
   };
 
   return (
-    <div
-      className={`border-2 border-slate-400 rounded-md ${
-        todo.isCompletead ? <AiOutlineCheck className="text-2xl" /> : ""
-      } w-5 h-5 flex items-center justify-center`}
+    <Check
+      className={`${todo.isCompletead ? <AiOutlineCheck size={24} /> : ""}`}
       onClick={onClickToggle}
     >
-      {todo.isCompletead && <BsCheck size={24} className="text-gray-900" />}
-    </div>
+      {todo.isCompletead && <BsCheck size={24} />}
+    </Check>
   );
 };
 

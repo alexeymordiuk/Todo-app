@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Home from "./pages/Home";
 import "./scss/index.css";
+import { Global } from "./style-components/Global";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,6 +16,7 @@ root.render(
     <Layout>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <Global />
           <Home />
         </PersistGate>
       </Provider>

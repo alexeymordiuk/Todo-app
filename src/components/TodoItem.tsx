@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import Chek from "./Chek";
-import { BsTrash } from "react-icons/bs";
 import { todoItems } from "../types/todoTypes";
 import { useAppDispatch } from "../store/store";
 import { removeItems } from "../store/todoSlice/todoSlice";
-import { VscTasklist } from "react-icons/vsc";
+import {
+  BtnGreen,
+  BtnRed,
+  IconList,
+  IconTrash,
+  Input,
+  Target,
+  Wrraper,
+} from "../style-components/TodoItems";
 
 export type todoProps = {
   todo: todoItems;
@@ -30,39 +37,26 @@ const TodoItem: React.FC<todoProps> = ({ todo }) => {
   };
 
   return (
-    <div
-      className={`${
-        todo.isCompletead ? "active" : ""
-      } flex items-center justify-between bg-white border border-gray text-black p-4 w-full`}
-    >
-      <button>
-        <div className="flex items-center gap-x-3">
-          <Chek todo={todo} />
-          <input
-            className="record"
-            ref={inputRef}
-            type="text"
-            value={newValue}
-            disabled={disabled}
-            onChange={(e) => setNewValue(e.target.value)}
-          />
-        </div>
-      </button>
-      <div className="flex items-center gap-3">
-        <button className="bg-green-500 p-2 rounded-md" onClick={onClickEdit}>
-          <VscTasklist
-            size={22}
-            className="text-white hover:text-blue-500 transition-colors ease-out duration-10"
-          />
-        </button>
-        <button className="bg-red-600 p-2 rounded-md" onClick={onClickRemove}>
-          <BsTrash
-            size={22}
-            className="text-white hover:text-blue-500 transition-colors ease-out duration-10"
-          />
-        </button>
-      </div>
-    </div>
+    <Wrraper className={`${todo.isCompletead ? "bg-slate-300" : "bg-white"}`}>
+      <Target>
+        <Chek todo={todo} />
+        <Input
+          ref={inputRef}
+          type="text"
+          value={newValue}
+          disabled={disabled}
+          onChange={(e) => setNewValue(e.target.value)}
+        />
+      </Target>
+      <Target>
+        <BtnGreen onClick={onClickEdit}>
+          <IconList size={22} />
+        </BtnGreen>
+        <BtnRed onClick={onClickRemove}>
+          <IconTrash size={22} />
+        </BtnRed>
+      </Target>
+    </Wrraper>
   );
 };
 

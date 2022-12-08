@@ -1,4 +1,5 @@
 import React from 'react'
+import { Inner } from '../style-components/Layout';
 
 type layout = {
     children: React.ReactNode;
@@ -6,7 +7,7 @@ type layout = {
 
 const Layout: React.FC<layout> = ({children}) => {
   return (
-    <div className='py-10 bg-white h-screen'>{children}</div>
+    <Inner>{children}</Inner>
   )
 }
 

@@ -5,6 +5,14 @@ import { todoItems } from "../types/todoTypes";
 import { useAppDispatch } from "../store/store";
 import { selectTodo } from "../store/todoSlice/todoSlice";
 import { addTodo } from "../store/todoSlice/todoSlice";
+import {
+  Btn,
+  Form,
+  Input,
+  Record,
+  Title,
+  Wrapper,
+} from "../style-components/Input";
 
 const Home: React.FC = () => {
   const [value, setValue] = useState("");
@@ -31,33 +39,26 @@ const Home: React.FC = () => {
   const total = items.reduce((sum, item) => sum + item.count, 0);
 
   return (
-    <div className=" text-white w-4/5 mx-auto border border-gray p-4">
-      <h1 className="text-2xl font-bold text-black mb-5 bg-slate-100 p-4">
-        Todos ({total})
-      </h1>
-      <form className="flex items-center mb-4 rounded-md justify-between border-2 border-gray  bg-white w-full">
-        <input
+    <Wrapper>
+      <Title>Todos ({total})</Title>
+      <Form>
+        <Input
           type="text"
-          className="bg-transparent w-full outline-none pl-3 text-black"
           placeholder="Enter todo here"
           required
           value={value}
           onChange={onChangeInput}
         />
-        <button
-          onClick={onClickSubmit}
-          type="submit"
-          className="bg-sky-500 p-3 hover:bg-red-500 rounded-md transition-colors"
-        >
+        <Btn onClick={onClickSubmit} type="submit">
           Submit
-        </button>
-      </form>
-      <div className="border border-gray ">
+        </Btn>
+      </Form>
+      <Record>
         {items.map((todo: todoItems) => (
           <TodoItem key={todo.title} todo={todo} />
         ))}
-      </div>
-    </div>
+      </Record>
+    </Wrapper>
   );
 };
 
